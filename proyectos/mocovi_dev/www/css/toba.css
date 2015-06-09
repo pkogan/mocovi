@@ -1,0 +1,20 @@
+/**
+	Incluir aquí las reglas css propias de este proyecto 
+*/
+
+
+#enc-logo img{
+    padding-left: 50px;
+    padding-top: 3px;
+    height: 25px;
+}
+.pie{
+    
+    margin: auto;
+    text-align: center;
+    padding-top: 5px;
+    width: 100%;
+    height: 30px;
+    background-color: #5c5f9e;
+    color:#FFFFFF;
+}

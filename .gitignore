@@ -1,3 +1,4 @@
+/nbproject/*
 /bin/*
 /temp/*
 /php/*
@@ -5,10 +6,11 @@
 /proyectos/*
 !/proyectos/mocovi_dev/
 /instalacion/*
+!/instalacion/i__desarrollo/
+/instalacion/i__desarrollo/*
 !/instalacion/i__desarrollo/p__mocovi_dev/
 /www/*
 /PROYECTO
 /entorno_toba_2.6.sh
-/licencia.txt
 /notas_version.txt
 /VERSION

@@ -1,10 +1,9 @@
 <?php
-
-class ci_informe_cargos_presupuestados extends mocovi_dev_abm_ci {
-
+class ci_informe_gastos_presupuestados extends  mocovi_dev_abm_ci
+{
     protected $s__where;
     protected $s__datos_filtro;
-    public $nombre_tabla = 'presupuesto_cargos';
+    public $nombre_tabla = 'presupuesto_general';
 
     //-----------------------------------------------------------------------------------
     //---- cuadro -----------------------------------------------------------------------
@@ -15,7 +14,7 @@ class ci_informe_cargos_presupuestados extends mocovi_dev_abm_ci {
      * El formato de carga es de tipo recordset: array( array('columna' => valor, ...), ...)
      */
     function conf__cuadro(mocovi_dev_ei_cuadro $cuadro) {
-        $datos = $this->dep('datos')->get_listado_agrupado_categoria($this->s__where);
+        $datos = $this->dep('datos')->get_listado($this->s__where);
         $cuadro->set_datos($datos);
     }
 

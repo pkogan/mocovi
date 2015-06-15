@@ -1,7 +1,7 @@
 <?php
 class dt_presupuesto_general extends toba_datos_tabla
 {
-	function get_listado()
+	function get_listado($where=null)
 	{/*
          * Se podría Calcular, borrar todo e insertar cada vez que se lista
          */
@@ -88,7 +88,11 @@ inner join escalafon e on pc.id_escalafon=e.id_escalafon
 group by pc.id_periodo,pc.id_unidad,pc.id_escalafon";
             
                 toba::db('mocovi_dev')->ejecutar($sql);
-            
+            if (is_null($where)) {
+            $where = '';
+        } else {
+            $where = ' where '.$where;
+        }
             
 		$sql = "SELECT
 			t_p.id_presupuesto,
@@ -106,8 +110,13 @@ group by pc.id_periodo,pc.id_unidad,pc.id_escalafon";
 			inner JOIN unidad as t_u ON (t_p.id_unidad = t_u.id_unidad)
 			LEFT OUTER JOIN objeto_del_gasto as t_odg ON (t_p.id_objeto_del_gasto = t_odg.id_objeto_del_gasto)
                         Left outer join objeto_del_gasto as t_odg2 on t_odg.elemento_padre=t_odg2.elemento
+                        $where
                         order by t_odg.codigo_completo";
                 $sql = toba::perfil_de_datos()->filtrar($sql);
+                
+                        $id_periodo_actual=php_mocovi::instancia()->periodo_a_presupuestar();
+        
+        
 		return toba::db('mocovi_dev')->consultar($sql);
 	}
 

@@ -41,20 +41,20 @@ select pc.id_periodo,pc.id_unidad,pc.id_escalafon,pc.id_categoria,p.anio as peri
 select id_periodo,id_unidad,id_escalafon,id_categoria,sum(cantidad) as cantidad, sum(cede) as cede, sum(recibe) as recibe
 from (
 
-select id_periodo,id_unidad,id_escalafon, id_categoria,cantidad, 0 as cede, 0 as recibe
+select id_presupuesto_cargos,id_periodo,id_unidad,id_escalafon, id_categoria,cantidad, 0 as cede, 0 as recibe
 from presupuesto_cargos
 where id_periodo=$id_periodo_actual
 
 Union
 
-select id_periodo,id_unidad,id_escalafon,id_categoria,0 as cantidad,cantidad as cede,0 as recibe
+select id_presupuesto_permutas,id_periodo,id_unidad,id_escalafon,id_categoria,0 as cantidad,cantidad as cede,0 as recibe
 from presupuesto_permutas
 where id_tipo_permuta=1 --Cede
 and id_periodo=$id_periodo_actual
 
 Union
 
-select id_periodo,id_unidad,id_escalafon,id_categoria,0 as cantidad,0 as cede,cantidad as recibe
+select id_presupuesto_permutas,id_periodo,id_unidad,id_escalafon,id_categoria,0 as cantidad,0 as cede,cantidad as recibe
 from presupuesto_permutas
 where id_tipo_permuta=2 --Recibe
 and id_periodo=$id_periodo_actual

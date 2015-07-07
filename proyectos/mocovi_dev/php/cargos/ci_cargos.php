@@ -1,5 +1,5 @@
 <?php
-class ci_cargos extends mocovi_dev_abm_ci
+class ci_cargos extends mocovi_dev_abm_ci_presupuesto
 {
     public $nombre_tabla='presupuesto_cargos';
 

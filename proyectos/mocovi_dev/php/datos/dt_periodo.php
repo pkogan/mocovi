@@ -1,7 +1,11 @@
 <?php
 class dt_periodo extends toba_datos_tabla
 {
-	function get_listado()
+    static function get_periodo_a_presupuestar(){
+        	$sql = "SELECT * FROM periodo where presupuestando is true";
+		return toba::db('mocovi_dev')->consultar($sql);
+    }
+            function get_listado()
 	{
 		$sql = "SELECT
 			t_p.id_periodo,

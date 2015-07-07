@@ -1,5 +1,5 @@
 ------------------------------------------------------------
---[819000048]--  Preupuesto Personal 
+--[819000048]--  Presupuesto Personal 
 ------------------------------------------------------------
 
 ------------------------------------------------------------
@@ -23,7 +23,7 @@ INSERT INTO apex_item (item_id, proyecto, item, padre_id, padre_proyecto, padre,
 	NULL, --actividad_buffer
 	NULL, --actividad_patron_proyecto
 	NULL, --actividad_patron
-	'Preupuesto Personal', --nombre
+	'Presupuesto Personal', --nombre
 	NULL, --descripcion
 	NULL, --punto_montaje
 	NULL, --actividad_accion

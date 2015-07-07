@@ -3,7 +3,7 @@ class mocovi_dev_abm_ci extends toba_ci
 {
     /*agregar al atributo nombre_tabla la tabla sobre la que trabaja el ci */
     //private $nombre_tabla='';
-    
+       
     function conf__cuadro(toba_ei_cuadro $cuadro)
 	{
 		$cuadro->set_datos($this->dep('datos')->tabla($this->nombre_tabla)->get_listado());

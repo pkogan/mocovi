@@ -19,6 +19,7 @@ class mocovi_dev_autoload
 
 	static protected $clases = array(
             'mocovi_dev_abm_ci' => 'extension_toba/componentes/mocovi_dev_abm_ci.php',
+            'mocovi_dev_abm_ci_presupuesto' => 'extension_toba/componentes/mocovi_dev_abm_ci_presupuesto.php',
             'php_mocovi' => 'php_mocovi.php',
 		'mocovi_dev_ci' => 'extension_toba/componentes/mocovi_dev_ci.php',
 		'mocovi_dev_cn' => 'extension_toba/componentes/mocovi_dev_cn.php',

@@ -26,7 +26,7 @@ class dt_presupuesto_general extends toba_datos_tabla
   when 2 Then 79
   when 3 Then 10
   end as id_objeto_del_gasto 
- ,sum(cc.costo*pc.cantidad*e.indice*13)
+ ,sum(cc.costo*pc.cantidad*e.indice*13*1.274)-- inflacion cargos
    from
 (select COALESCE(a.id_periodo,b.id_periodo) as id_periodo, COALESCE(a.id_unidad,b.id_unidad) as id_unidad, COALESCE(a.id_escalafon,b.id_escalafon) as id_escalafon, COALESCE(a.id_categoria,b.id_categoria) as id_categoria, COALESCE(sum (a.cantidad),0)+COALESCE(sum (b.cantidad),0) as cantidad
 from presupuesto_cargos a full outer join presupuesto_permutas b on a.id_periodo=b.id_periodo and a.id_unidad=b.id_unidad and a.id_categoria=b.id_categoria and (b.id_tipo_permuta=1) --Cede
@@ -58,20 +58,21 @@ group by pc.id_periodo,pc.id_unidad,pc.id_escalafon
   when 2 Then 5
   when 3 Then 6
   end as id_objeto_del_gasto 
- ,sum(cc.costo*pc.cantidad*e.indice*13)
+ ,sum(cc.costo*pc.cantidad*e.indice*13*1.274)
    from
 (
 select id_periodo,id_unidad,id_escalafon,id_categoria,sum(cantidad) as cantidad
-from (select id_periodo,id_unidad,id_escalafon, id_categoria,cantidad
+from (
+select id_presupuesto_cargos,id_periodo,id_unidad,id_escalafon, id_categoria,cantidad
 from presupuesto_cargos
 where id_periodo=$id_periodo_actual
 Union
-select id_periodo,id_unidad,id_escalafon,id_categoria,cantidad as cantidad
+select id_presupuesto_permutas,id_periodo,id_unidad,id_escalafon,id_categoria,cantidad as cantidad
 from presupuesto_permutas
 where id_tipo_permuta=1 --Cede
 and id_periodo=$id_periodo_actual
 Union
-select id_periodo,id_unidad,id_escalafon,id_categoria,cantidad * (-1) as cantidad
+select id_presupuesto_permutas,id_periodo,id_unidad,id_escalafon,id_categoria,cantidad * (-1) as cantidad
 from presupuesto_permutas
 where id_tipo_permuta=2 --Recibe
 and id_periodo=$id_periodo_actual

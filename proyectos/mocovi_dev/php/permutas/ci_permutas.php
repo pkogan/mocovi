@@ -1,5 +1,5 @@
 <?php
-class ci_permutas extends mocovi_dev_abm_ci
+class ci_permutas extends mocovi_dev_abm_ci_presupuesto
 {
     public $nombre_tabla='presupuesto_permutas';
 

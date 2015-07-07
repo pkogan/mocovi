@@ -1,4 +1,5 @@
 <?php
+include_once '../php/datos/dt_periodo.php';
 
 class php_mocovi
 {
@@ -28,9 +29,25 @@ class php_mocovi
 	}
         
         function periodo_a_presupuestar(){
-            return 5; /*2016*/
+            $periodo=dt_periodo::get_periodo_a_presupuestar();
+            //ei_arbol($periodo);
+            if(!isset($periodo[0])){
+                throw new toba_error_autorizacion('Error no hay un periodo a presupuestar');
+                
+            }
+            return $periodo[0]['id_periodo']; /*2016*/
         }
 	
+        function periodo_a_presupuestar_activo(){
+            $periodo=dt_periodo::get_periodo_a_presupuestar();
+            //ei_arbol($periodo);
+            if(!isset($periodo[0])){
+                throw new toba_error_autorizacion('Error no hay un periodo a presupuestar');
+            }
+            return $periodo[0]['activo_para_carga_presupuestando']; /*2016*/
+        }
+        
+        
         function mensaje(){
             echo 'Aplicación web para planificación y ejecución del presupuesto Universitario';
         }
